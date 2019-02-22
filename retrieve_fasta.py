@@ -10,7 +10,6 @@ Created on Sat Feb 16 14:24:19 2019
 import json
 import os
 import sys 
-#data = {}
 
 
 def parse_parameters(data):
@@ -29,15 +28,15 @@ def parse_parameters(data):
     else:
         db_path = data["defaults"]["db-path"]
     
-    if "rerio-query" in data:
-        query = data["rerio-query"]
+    if "query" in data:
+        query = data["query"]
     else:
         raise Exception("Query sequence is missing")
     
     if "prefix" in data:
         prefix = data["prefix"]
     else:
-        print("Prefix for filename is missing")
+        raise Exception("Prefix for filename is missing")
     if "range" in data:
         sequence_range = data["range"]
     else:
@@ -55,7 +54,7 @@ def retrieve_fasta_range(tmp_file, sequence_range):
     alignment_start = int(coordinates[8])
     alignment_end = int(coordinates[9])
     
-    print(alignment_start, alignment_end)
+    #print(alignment_start, alignment_end)
     
     range_list_length = len(sequence_range)
     
@@ -111,13 +110,14 @@ fasta_minus = ("blastdbcmd -db {db_path}blastdb.{sample} "
               "-entry {contig} -range {sequence_start}-{sequence_end} "
               "-strand 'minus' -out {prefix}.{sample}.fa")
 
+fo = open(prefix + ".fa", "a")
 
 for sample in samples:
     command_line = blast_command.format(db_path = db_path, 
                                         sample = sample, 
                                         query = query, 
                                         e_val = e_val)
-    print(command_line)
+    print(sample)
     os.system(command_line)
     
     contig, sequence_start, sequence_end, plus_strand = retrieve_fasta_range("tmp.6out", sequence_range)
@@ -131,7 +131,10 @@ for sample in samples:
                                           contig = contig, prefix = prefix)
     os.system(fasta_command)
     os.system("rm tmp.6out")
-        
+    with open("{prefix}.{sample}.fa".format(prefix = prefix, sample = sample)) as f:
+        fasta_single = f.readlines()
+        fo.writelines(">"+sample + "\n" + fasta_single[1:])    
 
+fo.close()    
         
     
