@@ -60,7 +60,7 @@ If you are satisfied with blast output, you can...
 
 ### 3. Retrieve fasta from the local databases
 
-The following command will save the sequence range (as specified by "range" parameter in the input parameters json file) from the local database as a fasta sequence in your working directory. The output files will be named like prefix.sample.fa
+The following command will save the sequence range (as specified by "range" parameter in the input parameters json file) from the local database as a fasta sequence in your working directory. The output files will be named like prefix.sample.fa. prefix.fa file contains sequences from all samples with sample name as a fasta header.
 
 ``` bash
 python3 retrieve_fasta.py sample_input.json
