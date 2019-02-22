@@ -133,7 +133,9 @@ for sample in samples:
     os.system("rm tmp.6out")
     with open("{prefix}.{sample}.fa".format(prefix = prefix, sample = sample)) as f:
         fasta_single = f.readlines()
-        fo.writelines(">"+sample + "\n" + fasta_single[1:])    
+        fo.writelines(">"+sample + "\n")
+        for line in fasta_single[1:]:
+            fo.writelines(line)
 
 fo.close()    
         
