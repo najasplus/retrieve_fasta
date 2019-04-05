@@ -44,6 +44,12 @@ def parse_parameters(data):
 
     return samples, e_val, db_path, query, prefix, sequence_range
 
+def coordinate_in_valid_range(coord):
+    if coord < 1:
+        return(False)
+    else:
+        return(True)
+
 def retrieve_fasta_range(tmp_file, sequence_range):
     with open(tmp_file) as f:
         coordinates = f.readlines()[0].split("\t")
@@ -75,13 +81,19 @@ def retrieve_fasta_range(tmp_file, sequence_range):
             print("WARNING: You have more than two values defining sequence range. \n"
                   "Only minimum and maximum values will be used")
     elif range_list_length >= 2 and not plus_strand:
-        sequence_end = alignment_start + min(sequence_range)
+        sequence_end = alignment_start - min(sequence_range)
         sequence_start = alignment_start - max(sequence_range)
         if range_list_length > 2:
             print("WARNING: You have more than two values defining sequence range. \n"
                   "Only minimum and maximum values will be used")
     else:
         raise Exception("Range parameter should have 2 values or no value")
+
+    if not coordinate_in_valid_range(sequence_start):
+        sequence_start = 1
+    if not coordinate_in_valid_range(sequence_end):
+        sequence_end = 1
+
 
      
     contig = coordinates[1]
@@ -118,6 +130,7 @@ for sample in samples:
                                         query = query, 
                                         e_val = e_val)
     print(sample)
+    print(command_line)
     os.system(command_line)
     
     contig, sequence_start, sequence_end, plus_strand = retrieve_fasta_range("tmp.6out", sequence_range)
@@ -129,6 +142,7 @@ for sample in samples:
         fasta_command = fasta_minus.format(db_path = db_path,  sample = sample,
                                           sequence_start = sequence_start, sequence_end = sequence_end,
                                           contig = contig, prefix = prefix)
+    print(fasta_command)
     os.system(fasta_command)
     os.system("rm tmp.6out")
     with open("{prefix}.{sample}.fa".format(prefix = prefix, sample = sample)) as f:
