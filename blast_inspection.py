@@ -26,8 +26,8 @@ def parse_parameters(data):
         db_path = data["db-path"]
     else:
         db_path = data["defaults"]["db-path"]
-    if "rerio-query" in data:
-        query = data["rerio-query"]
+    if "query" in data:
+        query = data["query"]
     else:
         print("Query sequence is missing")
     if "prefix" in data:
