@@ -25,9 +25,9 @@ To describe the input files (i.e. query sequence, samples/databases to search) a
 	"query": "query_sequences/kcnj13_exon7.fa",
 	"range":[0, 5000],
 	"defaults": {
-		"samples":["fDanAes4", "fDanAlb1", "fDanCho1", "fDanJai1", "fDanKya3", "fDanTin1", "fDreABz2", "fDreCBz1", "fDreNAz1"], 
+		"samples":["fDanAes4", "fDanAlb1", "fDanCho1", "fDanJai1", "fDanKya3", "fDanTin1", "fDreABz2", "fDreCBz1", "fDreNAz1", "Trinity_aesculapii"], 
 		"eval": "1e-100",
-		"db-path": "/ebio/ecnv_projects/zebrafish_natural_variation/data/Sanger_assemblies/blastdbs/",
+		"db-path": "/ebio/ecnv_projects/common_resourses/data/spp_blastdb/",
 		"range":[]
 	}
 }
@@ -66,5 +66,16 @@ The following command will save the sequence range (as specified by "range" para
 python3 retrieve_fasta.py sample_input.json
 #or
 python3 /path/to/retrieve_fasta.py /another/path/to/sample_input.json
+#the output files will be saved in your working directory
+```
+
+### 4. Run blast of multiple sequences contained in single fasta file
+
+Equivalent to blast_inspection.py, but with multiple fasta sequences provided in a single file as an input. Returns alignments in default blast format.
+
+``` bash
+python3 blast_inspection_multifasta.py sample_input.json input_fasta.fa
+#or
+python3 /path/to/blast_inspection_multifasta.py /another/path/to/sample_input.json /path/to/input_fasta.fa
 #the output files will be saved in your working directory
 ```
