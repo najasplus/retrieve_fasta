@@ -25,7 +25,7 @@ To describe the input files (i.e. query sequence, samples/databases to search) a
 	"query": "query_sequences/kcnj13_exon7.fa",
 	"range":[0, 5000],
 	"defaults": {
-		"samples":["fDanAes4", "fDanAlb1", "fDanCho1", "fDanJai1", "fDanKya3", "fDanTin1", "fDreABz2", "fDreCBz1", "fDreNAz1", "Trinity_aesculapii"], 
+		"samples":["fDanAes4", "fDanAlb1", "fDanCho1", "fDanJai1", "fDanKya3", "fDanTin1", "fDreABz2", "fDreCBz1", "fDreNAz1", "Trinity_aesculapii", "grcz11"], 
 		"eval": "1e-100",
 		"db-path": "/ebio/ecnv_projects/common_resourses/data/spp_blastdb/",
 		"range":[]

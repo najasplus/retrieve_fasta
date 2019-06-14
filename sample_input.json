@@ -4,7 +4,7 @@
 	"query": "/ebio/ecnv_projects/zebrafish_natural_variation/data/Sanger_assemblies/rerio_genomic_sequences/obelix_kcnj13_exon7_coding.fa",
 	"range":[-10, 6000],
 	"defaults": {
-		"samples":["fDanAes4", "fDanAlb1", "fDanCho1", "fDanJai1", "fDanKya3", "fDanTin1", "fDreABz2", "fDreCBz1", "fDreNAz1", "Trinity_aesculapii"], 
+		"samples":["fDanAes4", "fDanAlb1", "fDanCho1", "fDanJai1", "fDanKya3", "fDanTin1", "fDreABz2", "fDreCBz1", "fDreNAz1", "Trinity_aesculapii", "grcz11"], 
 		"eval": "1e-100",
 		"db-path": "/ebio/ecnv_projects/common_resourses/data/spp_blastdb/",
 		"range":[]
