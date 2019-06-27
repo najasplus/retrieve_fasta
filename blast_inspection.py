@@ -44,8 +44,8 @@ if len(sys.argv) != 2:
     raise Exception("Please provide exactly one file as parameter input")
 
 
-with open(sys.argv[1], encoding='utf-8', strict = False) as f:
-    data = json.load(f)
+with open(sys.argv[1], encoding='utf-8') as f:
+    data = json.load(f, strict = False)
 
 #print(data)
 
